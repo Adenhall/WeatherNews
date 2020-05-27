@@ -11,7 +11,8 @@ export default class App extends Component {
       locationName: "",
       country:"",
       temperature: "",
-      weatherDescription:""
+      weatherDescription:"",
+      weatherIcon: ""
       };
   }
 
@@ -27,7 +28,8 @@ export default class App extends Component {
       locationName: result.name,
       country: result.sys.country,
       temperature: result.main.temp,
-      weatherDescription: result.weather[0].description
+      weatherDescription: result.weather[0].description,
+      weatherIcon: result.weather[0].icon
       })
   }
 
@@ -46,7 +48,10 @@ export default class App extends Component {
     if(this.state.weatherResult == null) {
       return (<div> Loading </div>)
     }
-      
+    const temperatureC = (this.state.temperature - 273.15).toFixed(1);
+    const temperatureF = (((this.state.temperature - 273.15) * 9) / 5 + 32).toFixed(1);
+    let icon = `http://openweathermap.org/img/wn/${this.state.weatherIcon}@2x.png`  
+
     return (
       <div className="container mx-auto my-4 py-4" style={{ margin: 0 }}>
           <div className="row justify-content-center text-center">
@@ -55,11 +60,12 @@ export default class App extends Component {
                 {this.state.locationName}, {this.state.country}
               </h2>
               <h1 className="col-12 temperature">
-                {this.state.temperature}
+                {this.state.temperature && `${temperatureC}°C - ${temperatureF}°F`}
               </h1>
               <h2 className="col-12 weather-description">
                 {this.state.weatherDescription}
               </h2>
+              <img src={icon} alt="Current Weather"/>
               <p className="col-12 author">
                 Made with 
                 <span role="img" aria-labelledby="heart">
