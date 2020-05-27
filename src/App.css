@@ -1,3 +1,11 @@
 .weather-container {
   border: 3px solid black;
 }
+.author {
+  border-top: 1px solid grey;
+}
+.temperature {
+  font-size: 3em;
+  color: red;
+  font-weight: bold;
+}

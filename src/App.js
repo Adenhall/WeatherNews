@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import ClipLoader from "./utils/ClipLoader.js";
 
 export default class App extends Component {
 
@@ -46,7 +47,7 @@ export default class App extends Component {
 
   render() {
     if(this.state.weatherResult == null) {
-      return (<div> Loading </div>)
+      return (<ClipLoader/>)
     }
     const temperatureC = (this.state.temperature - 273.15).toFixed(1);
     const temperatureF = (((this.state.temperature - 273.15) * 9) / 5 + 32).toFixed(1);
